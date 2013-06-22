@@ -30,8 +30,8 @@ public class WorldListener extends BaseListener<SkylandsPlus> {
 			WorldServer worldServer = ((CraftWorld) world).getHandle();
 			
 			try{
-				ReflectionUtils.setFieldValue(WorldData.class, "type", worldServer.worldData, WorldType.NORMAL);
-				
+				WorldData.class.getDeclaredField("type").set(worldServer.worldData, WorldType.NORMAL);
+
 				plugin.log.info("The world type of '" + world.getName() + "' has been set to to normal.");
 			}catch (Exception e){
 				plugin.log.info("Could not change the world type of '" + world.getName() + "'.");
